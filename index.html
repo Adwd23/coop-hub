@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>مركز التدريب التعاوني | عبدالوهاب</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --primary-soft: #dbeafe;
+      --green-bg: #dcfce7;
+      --green-text: #14532d;
+      --blue-bg: #dbeafe;
+      --blue-text: #1e3a8a;
+      --yellow-bg: #fef3c7;
+      --yellow-text: #78350f;
+      --purple-bg: #f3e8ff;
+      --purple-text: #581c87;
+      --red-bg: #fee2e2;
+      --red-text: #7f1d1d;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+      --radius: 14px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1120;
+        --surface: #1e293b;
+        --surface-alt: #0f172a;
+        --border: #334155;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --primary: #3b82f6;
+        --primary-hover: #2563eb;
+        --primary-soft: #1e3a8a;
+        --green-bg: #14532d;
+        --green-text: #bbf7d0;
+        --blue-bg: #1e3a8a;
+        --blue-text: #bfdbfe;
+        --yellow-bg: #78350f;
+        --yellow-text: #fde68a;
+        --purple-bg: #581c87;
+        --purple-text: #e9d5ff;
+        --red-bg: #7f1d1d;
+        --red-text: #fecaca;
+        --shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      line-height: 1.5;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      margin: 0;
+      padding-block-end: 5.5rem;
+      min-block-size: 100dvh;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    :where(a, button, input, select, textarea, summary):focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    header.app-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--surface);
+      border-block-end: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .header-top {
+      max-inline-size: 960px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .brand h1 {
+      font-size: 1.05rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .sync-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .icon-btn {
+      min-block-size: 44px;
+      min-inline-size: 44px;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .stats-strip {
+      max-inline-size: 960px;
+      margin: 0.65rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.4rem;
+    }
+
+    .stat-pill {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.35rem 0.25rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .stat-lbl {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    main {
+      max-inline-size: 960px;
+      margin: 0.75rem auto;
+      padding-inline: 0.85rem;
+    }
+
+    .queue-banner {
+      background: var(--yellow-bg);
+      color: var(--yellow-text);
+      border: 1px solid currentColor;
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      margin-block-end: 0.85rem;
+    }
+
+    .queue-banner summary {
+      font-weight: 700;
+      cursor: pointer;
+      min-block-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .queue-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.65rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .queue-item {
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.86rem;
+    }
+
+    .view-panel[hidden] {
+      display: none;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      margin: 1rem 0 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.9rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .row-tag {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      align-self: flex-start;
+    }
+
+    .badge-green { background: var(--green-bg); color: var(--green-text); }
+    .badge-blue { background: var(--blue-bg); color: var(--blue-text); }
+    .badge-yellow { background: var(--yellow-bg); color: var(--yellow-text); }
+    .badge-purple { background: var(--purple-bg); color: var(--purple-text); }
+    .badge-red { background: var(--red-bg); color: var(--red-text); }
+
+    .meta-line {
+      font-size: 0.84rem;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .notes-box {
+      font-size: 0.84rem;
+      background: var(--surface-alt);
+      border-radius: 10px;
+      padding: 0.55rem 0.7rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-block-start: 0.15rem;
+    }
+
+    .btn {
+      min-block-size: 44px;
+      padding: 0.5rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-danger {
+      background: var(--red-bg);
+      border-color: transparent;
+      color: var(--red-text);
+    }
+
+    .btn-success {
+      background: var(--green-bg);
+      border-color: transparent;
+      color: var(--green-text);
+    }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    @media (pointer: coarse) {
+      .btn, .icon-btn, input, select, textarea {
+        min-block-size: 48px;
+      }
+    }
+
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      margin-block-end: 0.9rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-block-end: 0.95rem;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .hint-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    input[type="text"],
+    input[type="url"],
+    input[type="search"],
+    input[type="password"],
+    select,
+    textarea {
+      font: inherit;
+      font-size: max(1rem, 1em);
+      padding: 0.65rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      inline-size: 100%;
+    }
+
+    textarea {
+      min-block-size: 84px;
+      resize: vertical;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-block-size: 44px;
+    }
+
+    .check-row input[type="checkbox"] {
+      inline-size: 22px;
+      block-size: 22px;
+      accent-color: var(--primary);
+    }
+
+    .dup-box {
+      padding: 0.65rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-block-end: 0.9rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      padding-block: 0.35rem 0.65rem;
+      scrollbar-width: thin;
+    }
+
+    .pill-btn {
+      min-block-size: 40px;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.83rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .pill-btn[aria-pressed="true"] {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    nav.bottom-nav {
+      position: fixed;
+      bottom: 0;
+      inset-inline: 0;
+      z-index: 30;
+      background: var(--surface);
+      border-block-start: 1px solid var(--border);
+      padding-block-end: env(safe-area-inset-bottom, 0);
+      box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.08);
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0 auto;
+      padding: 0.25rem;
+      max-inline-size: 960px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.2rem;
+    }
+
+    .nav-btn {
+      inline-size: 100%;
+      min-block-size: 52px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.15rem;
+      padding: 0.25rem;
+    }
+
+    .nav-btn[aria-current="page"] {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .nav-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .toast-region {
+      position: fixed;
+      inset-inline: 1rem;
+      bottom: 4.5rem;
+      z-index: 40;
+      max-inline-size: 540px;
+      margin-inline: auto;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      pointer-events: auto;
+    }
+
+    dialog {
+      max-inline-size: min(92vw, 460px);
+      inline-size: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 1.15rem;
+    }
+
+    dialog::backdrop {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(2px);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand">
+        <img src="./icon.svg" alt="" width="32" height="32">
+        <div>
+          <h1>مركز التدريب التعاوني</h1>
+          <div id="sync-meta" class="sync-meta">جاري الاتصال...</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="refresh-btn" type="button" class="icon-btn" aria-label="تحديث البيانات">🔄 تحديث</button>
+        <button id="settings-btn" type="button" class="icon-btn" aria-label="إعدادات الاتصال">⚙️</button>
+      </div>
+    </div>
+    <div class="stats-strip" aria-label="ملخص التقديمات">
+      <div class="stat-pill"><span id="stat-total" class="stat-num">-</span><span class="stat-lbl">الإجمالي</span></div>
+      <div class="stat-pill"><span id="stat-submitted" class="stat-num">-</span><span class="stat-lbl">مقدم/مراجعة</span></div>
+      <div class="stat-pill"><span id="stat-interview" class="stat-num">-</span><span class="stat-lbl">مقابلات</span></div>
+      <div class="stat-pill"><span id="stat-action" class="stat-num">-</span><span class="stat-lbl">معلق عليك</span></div>
+      <div class="stat-pill"><span id="stat-excluded" class="stat-num">-</span><span class="stat-lbl">مستبعد/اعتذار</span></div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <details id="queue-banner" class="queue-banner" hidden>
+      <summary>
+        <span id="queue-summary-text">⏳ إجراءات قيد الانتظار لمزامنة اللابتوب (0)</span>
+      </summary>
+      <p class="hint-text" style="color: inherit; margin-block: 0.45rem 0;">
+        تُطبق هذه الأوامر تلقائياً على ملف الإكسل ومجلد CO-OP_Docs فور تشغيل اللابتوب أو أمر sync-mobile.
+      </p>
+      <ul id="queue-list" class="queue-list"></ul>
+    </details>
+
+    <!-- Tab 1: Action Center -->
+    <section id="view-actions" class="view-panel" aria-labelledby="heading-actions">
+      <h2 id="heading-actions" class="section-title">⚡ مطلوب تدخلك الآن</h2>
+
+      <h3 class="section-title">🔴 دعوات المقابلات والتقييمات (<span id="count-interviews">0</span>)</h3>
+      <div id="list-interviews" class="cards-grid"></div>
+
+      <h3 class="section-title">📄 شركات بانتظار خطاب الجامعة (<span id="count-letters">0</span>)</h3>
+      <div id="list-letters" class="cards-grid"></div>
+
+      <h3 class="section-title">🧩 متوقفة على كابتشا أو نفاذ (<span id="count-human">0</span>)</h3>
+      <div id="list-human" class="cards-grid"></div>
+    </section>
+
+    <!-- Tab 2: Quick Add & Smart Letter Drop -->
+    <section id="view-add" class="view-panel" aria-labelledby="heading-add" hidden>
+      <h2 id="heading-add" class="section-title">➕ إضافة فرصة أو رفع خطاب</h2>
+
+      <form id="add-company-form" class="form-card" aria-labelledby="form-add-title">
+        <h3 id="form-add-title" style="margin-block-start: 0;">إضافة فرصة تدريب تعاوني جديدة</h3>
+
+        <div class="form-group">
+          <label for="add-company-name">اسم الشركة (عربي أو إنجليزي) <span aria-hidden="true">*</span></label>
+          <input type="text" id="add-company-name" name="company" required placeholder="مثال: شركة علم (Elm)">
+        </div>
+
+        <div class="form-group">
+          <label for="add-company-url">رابط التقديم أو الإعلان</label>
+          <input type="url" id="add-company-url" name="url" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="https://...">
+        </div>
+
+        <div id="dup-check-result" class="dup-box badge-blue" role="status" aria-live="polite" hidden></div>
+
+        <div class="form-group">
+          <label for="add-company-role">المسمى / المسار المستهدف</label>
+          <select id="add-company-role" name="role">
+            <option value="Business Analyst / Systems Analyst">1. Business Analyst / Systems Analyst</option>
+            <option value="Product Management / Product Analyst">2. Product Management / Product Analyst</option>
+            <option value="IT Project Management / PMO">3. IT Project Management / PMO</option>
+            <option value="Information Systems / Database &amp; ERP">4. Information Systems / Database &amp; ERP</option>
+            <option value="Business Technology / Tech Consulting / Data &amp; AI">5. Business Technology / Tech Consulting / Data &amp; AI</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="add-company-notes">ملاحظات للـ Agent (اختياري)</label>
+          <textarea id="add-company-notes" name="notes" placeholder="مثال: التقديم على مسار محلل أعمال فقط..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="add-company-letter">إرفاق خطاب الجامعة PDF (اختياري — يُحول اسمه للإنجليزي تلقائياً)</label>
+          <input type="file" id="add-company-letter" name="letter" accept="application/pdf,.pdf">
+        </div>
+
+        <div class="check-row" style="margin-block-end: 0.85rem;">
+          <input type="checkbox" id="add-company-priority" name="priority" checked>
+          <label for="add-company-priority">⭐ أولوية قصوى (يبدأ بها الـ Agent في الجلسة القادمة)</label>
+        </div>
+
+        <button id="add-submit-btn" type="submit" class="btn btn-primary" style="inline-size: 100%;">🚀 إضافة لطابور التقديم القادم</button>
+      </form>
+
+      <form id="smart-letter-form" class="form-card" aria-labelledby="form-smart-letter-title">
+        <h3 id="form-smart-letter-title" style="margin-block-start: 0;">📄 رفع خطاب جامعة بالعربي (تسمية تلقائية)</h3>
+        <p class="hint-text" style="margin-block-start: 0;">
+          ارفع الملف كما نزل من بوابة جامعة الملك سعود (مثل: خطاب ترشيح - شركة تطوير لتقنيات التعليم - 444102676.pdf) وسيتعرف النظام على الشركة ويحول الاسم للإنجليزي تلقائياً.
+        </p>
+
+        <div class="form-group">
+          <label for="smart-letter-file">اختر ملف الخطاب PDF <span aria-hidden="true">*</span></label>
+          <input type="file" id="smart-letter-file" accept="application/pdf,.pdf" required>
+        </div>
+
+        <div id="smart-letter-preview" class="dup-box badge-blue" hidden></div>
+
+        <div class="form-group">
+          <label for="smart-letter-row">تأكيد أو تعديل الشركة المستهدفة</label>
+          <select id="smart-letter-row">
+            <option value="">-- تعرف تلقائي من اسم الملف --</option>
+          </select>
+        </div>
+
+        <button id="smart-letter-submit" type="submit" class="btn btn-primary" style="inline-size: 100%;">📎 رفع وحفظ الخطاب باسم إنجليزي</button>
+      </form>
+    </section>
+
+    <!-- Tab 3: All Companies & Exclude -->
+    <section id="view-companies" class="view-panel" aria-labelledby="heading-companies" hidden>
+      <h2 id="heading-companies" class="section-title">🏢 كل الشركات والاستبعاد (<span id="count-companies-shown">0</span>)</h2>
+
+      <search>
+        <div class="form-group" style="margin-block-end: 0.45rem;">
+          <label for="company-search" class="visually-hidden">ابحث باسم الشركة أو الرابط</label>
+          <input type="search" id="company-search" placeholder="ابحث باسم الشركة (عربي/إنجليزي) أو الرابط..." autocorrect="off" autocapitalize="none" spellcheck="false">
+        </div>
+      </search>
+
+      <div id="company-filters" class="filter-pills" role="group" aria-label="فلترة الشركات">
+        <button type="button" class="pill-btn" data-filter="all" aria-pressed="true">الكل</button>
+        <button type="button" class="pill-btn" data-filter="interview" aria-pressed="false">مقابلات</button>
+        <button type="button" class="pill-btn" data-filter="submitted_or_review" aria-pressed="false">مقدم/تحت المراجعة</button>
+        <button type="button" class="pill-btn" data-filter="needs_letter" aria-pressed="false">بانتظار خطاب</button>
+        <button type="button" class="pill-btn" data-filter="needs_human" aria-pressed="false">كابتشا/نفاذ</button>
+        <button type="button" class="pill-btn" data-filter="pending_open" aria-pressed="false">بانتظار فتح التقديم</button>
+        <button type="button" class="pill-btn" data-filter="excluded_or_rejected" aria-pressed="false">مستبعد/مرفوض</button>
+      </div>
+
+      <div id="list-companies" class="cards-grid"></div>
+    </section>
+
+    <!-- Tab 4: Email Feed -->
+    <section id="view-inbox" class="view-panel" aria-labelledby="heading-inbox" hidden>
+      <h2 id="heading-inbox" class="section-title">📬 آخر ردود الإيميل (<span id="count-emails">0</span>)</h2>
+      <div id="list-emails" class="cards-grid"></div>
+    </section>
+
+    <!-- Tab 5: My Docs Vault -->
+    <section id="view-vault" class="view-panel" aria-labelledby="heading-vault" hidden>
+      <h2 id="heading-vault" class="section-title">📁 خزنة ملفاتي الرسمية</h2>
+      <p class="hint-text" style="margin-block-start: 0;">
+        اضغط على أي ملف لتحميله فوراً على جوالك عند التقديم اليدوي في بوابات نفاذ أو الكابتشا. (خطاب لمن يهمه الأمر مستبعد عمداً التزاماً بقواعد الأمان).
+      </p>
+      <div id="list-docs" class="cards-grid"></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="التنقل الرئيسي">
+    <ul class="nav-list">
+      <li><button type="button" class="nav-btn" data-tab="actions" aria-current="page"><span class="nav-icon" aria-hidden="true">⚡</span><span>مطلوب مني</span></button></li>
+      <li><button type="button" class="nav-btn" data-tab="add"><span class="nav-icon" aria-hidden="true">➕</span><span>إضافة/خطاب</span></button></li>
+      <li><button type="button" class="nav-btn" data-tab="companies"><span class="nav-icon" aria-hidden="true">🏢</span><span>الشركات</span></button></li>
+      <li><button type="button" class="nav-btn" data-tab="inbox"><span class="nav-icon" aria-hidden="true">📬</span><span>الإيميل</span></button></li>
+      <li><button type="button" class="nav-btn" data-tab="vault"><span class="nav-icon" aria-hidden="true">📁</span><span>ملفاتي</span></button></li>
+    </ul>
+  </nav>
+
+  <input type="file" id="shared-card-file-input" class="visually-hidden" accept="application/pdf,.pdf">
+
+  <div class="toast-region" aria-live="polite" aria-atomic="true">
+    <div id="toast" class="toast" hidden></div>
+  </div>
+
+  <dialog id="auth-dialog" aria-labelledby="auth-dialog-title">
+    <h2 id="auth-dialog-title" style="margin-block-start: 0;">🔐 ربط الحساب الخاص</h2>
+    <p class="hint-text">
+      التوكن يُحفظ محلياً في متصفحك فقط للوصول إلى مستودع البيانات الخاص <code>Adwd23/coop-mobile-data</code> ولا يتم إرساله لأي طرف خارجي.
+    </p>
+    <form id="auth-form">
+      <div class="form-group">
+        <label for="token-input">GitHub Personal Access Token</label>
+        <input type="password" id="token-input" autocomplete="current-password" autocorrect="off" autocapitalize="none" spellcheck="false" required placeholder="gho_... أو ghp_...">
+      </div>
+      <div class="btn-row" style="justify-content: flex-end;">
+        <button type="button" id="auth-clear-btn" class="btn btn-danger">مسح التوكن</button>
+        <button type="submit" class="btn btn-primary">حفظ واتصال</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const DATA_REPO = 'Adwd23/coop-mobile-data';
+      const UNIFIED_PASS = 'Abdu@Coop2027!';
+      const TOKEN_KEY = 'coop_gh_token';
+
+      const LETTER_SLUG_ALIASES = {
+        'المركز الوطني للفعاليات': 'NEC',
+        'national events center': 'NEC',
+        'nec': 'NEC',
+        'كفاءة المالية': 'KafaaCapital',
+        'شركة كفاءة المالية': 'KafaaCapital',
+        'kafaa capital': 'KafaaCapital',
+        'kafaa': 'KafaaCapital',
+        'جمعية مكنون': 'Maknon',
+        'مكنون': 'Maknon',
+        'maknon': 'Maknon',
+        'تطوير لتقنيات التعليم': 'Tetco',
+        'شركة تطوير لتقنيات التعليم': 'Tetco',
+        'tetco': 'Tetco',
+        'وزارة المالية': 'MinistryOfFinance',
+        'ministry of finance': 'MinistryOfFinance',
+        'الوطنية للرعاية الطبية': 'MedicalCare',
+        'الشركة الوطنية للرعاية الطبية': 'MedicalCare',
+        'الرعاية الطبية': 'MedicalCare',
+        'medical care': 'MedicalCare',
+        'وزارة الصناعة والثروة المعدنية': 'MIM',
+        'وزارة الصناعة': 'MIM',
+        'ministry of industry': 'MIM',
+        'mim': 'MIM',
+        'الراجحي': 'AlRajhi',
+        'مصرف الراجحي': 'AlRajhi',
+        'أرامكو': 'Aramco',
+        'بنك البلاد': 'BankAlbilad',
+        'هيئة السوق المالية': 'CMA',
+        'هيئة الاتصالات': 'CST',
+        'علم': 'Elm',
+        'إنزار': 'Enzar',
+        'سابك': 'SABIC',
+        'الوطنية للإسكان': 'NHC',
+        'ثقة': 'Thiqah',
+        'إس تي سي': 'STC',
+        'سلوشنز': 'SolutionsBySTC',
+        'سايت': 'SITE',
+        'تحكم': 'Tahakom',
+        'تبادل': 'Tabadul',
+        'سدايا': 'SDAIA',
+        'نيوم': 'NEOM',
+        'روشن': 'ROSHN',
+        'القدية': 'Qiddiya',
+        'موبايلي': 'Mobily',
+        'زين السعودية': 'ZainKSA',
+        'تكامل': 'Takamol',
+        'سداد': 'SADAD',
+        'بنك المنشآت': 'SMEBank',
+        'البنك السعودي الأول': 'SAB',
+        'الديوان العام للمحاسبة': 'GCA',
+        'وزارة الاقتصاد والتخطيط': 'MEP',
+        'تقييم': 'Taqeem',
+        'كابسارك': 'KAPSARC',
+        'أثير للتواصل': 'Atheer',
+        'سرج': 'Sarj',
+        'ليكورا': 'LAKEORA',
+        'طيران الرياض': 'RiyadhAir',
+        'تداول': 'Tadawul'
+      };
+
+      const appState = {
+        token: '',
+        rawState: null,
+        queue: [],
+        queueSha: null,
+        effectiveRows: [],
+        activeTab: 'actions',
+        activeFilter: 'all',
+        searchQuery: '',
+        pendingCardUploadRow: null
+      };
+
+      let toastTimer = null;
+      function showToast(msg, durationMs = 3500) {
+        const el = document.getElementById('toast');
+        el.textContent = msg;
+        el.hidden = false;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => { el.hidden = true; }, durationMs);
+      }
+
+      function normalizeText(text) {
+        if (!text) return '';
+        return String(text)
+          .trim()
+          .toLowerCase()
+          .replace(/[\u064B-\u065F\u0670]/g, '')
+          .replace(/[أإآ]/g, 'ا')
+          .replace(/ى/g, 'ي')
+          .replace(/ة/g, 'ه')
+          .replace(/\s+/g, ' ');
+      }
+
+      function makePascalAscii(text) {
+        const words = String(text || '').match(/[A-Za-z0-9]+/g) || [];
+        return words.map((w) => (w === w.toUpperCase() && w.length <= 6) ? w : w[0].toUpperCase() + w.slice(1)).join('');
+      }
+
+      function sanitizeSafeUrl(rawUrl) {
+        const s = String(rawUrl || '').trim();
+        if (!s || s === '-') return null;
+        try {
+          const parsed = new URL(s);
+          if (parsed.protocol === 'http:' || parsed.protocol === 'https:' || parsed.protocol === 'mailto:') {
+            return parsed.href;
+          }
+        } catch {
+          return null;
+        }
+        return null;
+      }
+
+      function extractDomain(rawUrl) {
+        try {
+          const u = new URL(rawUrl);
+          return u.hostname.replace(/^www\./, '').toLowerCase();
+        } catch {
+          return '';
+        }
+      }
+
+      function resolveLetterFilenameJS(rawNameOrCompany, rows) {
+        const base = String(rawNameOrCompany || '').split(/[\\/]/).pop();
+        const stem = base.replace(/\.pdf$/i, '');
+        if (/^Letter_[A-Za-z0-9]+$/.test(stem)) {
+          return { filename: `${stem}.pdf`, matchedRow: null };
+        }
+        const cleaned = stem
+          .replace(/خطاب\s*ترشيح/g, ' ')
+          .replace(/\b444\d{6}\b/g, ' ')
+          .replace(/[-_]+/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+        const normCleaned = normalizeText(cleaned);
+
+        const sortedAliases = Object.entries(LETTER_SLUG_ALIASES).sort((a, b) => b[0].length - a[0].length);
+        for (const [alias, slug] of sortedAliases) {
+          if (normCleaned.includes(normalizeText(alias))) {
+            const matchedRow = (rows || []).find((r) => normalizeText(r.company).includes(normalizeText(alias))) || null;
+            return { filename: `Letter_${slug}.pdf`, matchedRow };
+          }
+        }
+
+        const stop = new Set(['شركه', 'مؤسسه', 'هيئه', 'وزاره', 'جمعيه', 'المركز', 'الوطني', 'الوطنيه', 'السعوديه', 'للتقنيه', 'company', 'group']);
+        const cleanTokens = new Set(normCleaned.split(' ').filter((t) => t.length >= 3 && !stop.has(t)));
+        let bestRow = null;
+        let bestScore = 0;
+
+        for (const tr of (rows || [])) {
+          const normComp = normalizeText(tr.company);
+          if (normCleaned && (normComp.includes(normCleaned) || normCleaned.includes(normComp))) {
+            bestRow = tr;
+            bestScore = 999;
+            break;
+          }
+          const compTokens = new Set(normComp.split(/[\s()\-/,]+/).filter((t) => t.length >= 3));
+          let overlap = 0;
+          for (const tok of cleanTokens) {
+            if (compTokens.has(tok)) overlap += 1;
+          }
+          if (overlap > bestScore) {
+            bestScore = overlap;
+            bestRow = tr;
+          }
+        }
+
+        if (bestRow && bestScore >= 1) {
+          const parens = [...bestRow.company.matchAll(/\(([^)]+)\)/g)];
+          for (const m of parens) {
+            const slug = makePascalAscii(m[1]);
+            if (slug.length >= 2) return { filename: `Letter_${slug}.pdf`, matchedRow: bestRow };
+          }
+          const slug = makePascalAscii(bestRow.company);
+          if (slug.length >= 2) return { filename: `Letter_${slug}.pdf`, matchedRow: bestRow };
+          return { filename: `Letter_Row${bestRow.row}.pdf`, matchedRow: bestRow };
+        }
+
+        const asciiSlug = makePascalAscii(cleaned);
+        if (asciiSlug.length >= 3) {
+          return { filename: `Letter_${asciiSlug}.pdf`, matchedRow: null };
+        }
+        const suffix = String(Date.now()).slice(-6);
+        return { filename: `Letter_Custom_${suffix}.pdf`, matchedRow: null };
+      }
+
+      async function copyText(text, label) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast(`✅ تم نسخ ${label}`);
+        } catch {
+          showToast('⚠️ تعذر النسخ التلقائي — تأكد من أذونات المتصفح');
+        }
+      }
+
+      function readFileAsBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const dataUrl = String(reader.result || '');
+            const idx = dataUrl.indexOf(',');
+            resolve(idx >= 0 ? dataUrl.slice(idx + 1) : dataUrl);
+          };
+          reader.onerror = () => reject(reader.error || new Error('فشل قراءة الملف'));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function decodeBase64ToBytes(b64) {
+        const clean = String(b64 || '').replace(/\s+/g, '');
+        const bin = atob(clean);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) {
+          bytes[i] = bin.charCodeAt(i);
+        }
+        return bytes;
+      }
+
+      function decodeUtf8Base64(b64) {
+        return new TextDecoder('utf-8').decode(decodeBase64ToBytes(b64));
+      }
+
+      function encodeUtf8Base64(str) {
+        const bytes = new TextEncoder().encode(str);
+        let bin = '';
+        const chunk = 0x8000;
+        for (let i = 0; i < bytes.length; i += chunk) {
+          bin += String.fromCharCode(...bytes.subarray(i, i + chunk));
+        }
+        return btoa(bin);
+      }
+
+      async function ghFetch(endpoint, options = {}) {
+        const token = appState.token;
+        if (!token) throw new Error('AUTH_REQUIRED');
+        const res = await fetch(`https://api.github.com/repos/${DATA_REPO}/${endpoint}`, {
+          ...options,
+          cache: 'no-store',
+          signal: AbortSignal.timeout(25000),
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+            ...(options.headers || {})
+          }
+        });
+        if (res.status === 401 || res.status === 403) {
+          throw new Error('AUTH_INVALID');
+        }
+        if (res.status === 404) {
+          return { notFound: true };
+        }
+        if (!res.ok) {
+          const txt = await res.text();
+          throw new Error(`GitHub API ${res.status}: ${txt.slice(0, 120)}`);
+        }
+        return res.json();
+      }
+
+      async function ghGetJson(path) {
+        const data = await ghFetch(`contents/${path}`);
+        if (data.notFound) return { exists: false, sha: null, value: null };
+        let text = '';
+        if (data.content) {
+          text = decodeUtf8Base64(data.content);
+        } else if (data.sha) {
+          const blob = await ghFetch(`git/blobs/${data.sha}`);
+          text = decodeUtf8Base64(blob.content);
+        }
+        return { exists: true, sha: data.sha, value: JSON.parse(text) };
+      }
+
+      async function ghPutContent(path, base64Content, message, knownSha = null) {
+        let sha = knownSha;
+        if (sha === null) {
+          const existing = await ghFetch(`contents/${path}`);
+          if (!existing.notFound && existing.sha) sha = existing.sha;
+        }
+        const body = { message, content: base64Content };
+        if (sha) body.sha = sha;
+        return ghFetch(`contents/${path}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+      }
+
+      async function enqueueMobileAction(actionObj) {
+        const item = {
+          id: (crypto.randomUUID ? crypto.randomUUID() : `q_${Date.now()}_${Math.random().toString(16).slice(2)}`),
+          created_at: new Date().toISOString(),
+          ...actionObj
+        };
+        const latest = await ghGetJson('mobile_queue.json');
+        const list = Array.isArray(latest.value) ? latest.value : [];
+        list.push(item);
+        const res = await ghPutContent(
+          'mobile_queue.json',
+          encodeUtf8Base64(JSON.stringify(list, null, 2)),
+          `Mobile queue: ${item.action}`,
+          latest.sha || null
+        );
+        appState.queue = list;
+        appState.queueSha = res?.content?.sha || null;
+        recomputeEffectiveRows();
+        renderAll();
+        return item;
+      }
+
+      async function removeQueueItem(itemId) {
+        const latest = await ghGetJson('mobile_queue.json');
+        const list = Array.isArray(latest.value) ? latest.value : [];
+        const filtered = list.filter((it) => String(it.id) !== String(itemId));
+        const res = await ghPutContent(
+          'mobile_queue.json',
+          encodeUtf8Base64(JSON.stringify(filtered, null, 2)),
+          `Cancel queued item ${itemId}`,
+          latest.sha || null
+        );
+        appState.queue = filtered;
+        appState.queueSha = res?.content?.sha || null;
+        recomputeEffectiveRows();
+        renderAll();
+        showToast('↩️ تم إلغاء الإجراء من الطابور');
+      }
+
+      function recomputeEffectiveRows() {
+        const baseRows = (appState.rawState?.rows || []).map((r) => ({ ...r, queuedActions: [] }));
+        const rowMap = new Map(baseRows.map((r) => [r.row, r]));
+
+        for (const q of appState.queue) {
+          if (q.action === 'add_company') {
+            baseRows.push({
+              row: `جديد`,
+              company: q.company || q.url,
+              sector: q.sector || '-',
+              role: q.role || 'Business Analyst / Systems Analyst',
+              platform: q.platform || 'مضاف من الجوال',
+              url: q.url || '',
+              date: (q.created_at || '').slice(0, 10),
+              email: 'mr0abdulwahab@gmail.com',
+              credentials: '-',
+              status: 'بانتظار الفحص والتقديم (قيد المزامنة)',
+              notes: q.notes || '',
+              excluded: 'لا',
+              category: 'pending_open',
+              expected_letter: q.target_filename || '',
+              has_letter: Boolean(q.remote_path),
+              queuedActions: [q.action]
+            });
+            continue;
+          }
+          const target = rowMap.get(Number(q.row));
+          if (!target) continue;
+          target.queuedActions.push(q.action);
+          if (q.action === 'exclude_company') {
+            target.excluded = 'نعم';
+            target.status = 'مستبعد (بناءً على طلبك - قيد المزامنة)';
+            target.category = 'excluded_or_rejected';
+          } else if (q.action === 'unexclude_company') {
+            target.excluded = 'لا';
+            target.status = 'بانتظار فتح التقديم (قيد المزامنة)';
+            target.category = 'pending_open';
+          } else if (q.action === 'mark_submitted') {
+            target.status = 'تم التقديم بنجاح (قيد المزامنة)';
+            target.category = 'submitted_or_review';
+          } else if (q.action === 'upload_letter') {
+            target.has_letter = true;
+            target.expected_letter = q.target_filename || target.expected_letter;
+            target.status = 'بانتظار استكمال التقديم (الخطاب مرفوع - قيد المزامنة)';
+          } else if (q.action === 'approve_general_letter') {
+            target.status = 'بانتظار استكمال التقديم (مسموح خطاب لمن يهمه الأمر - قيد المزامنة)';
+          }
+        }
+        appState.effectiveRows = baseRows;
+      }
+
+      function badgeClassForRow(r) {
+        if (r.category === 'excluded_or_rejected') return 'badge-red';
+        if (r.category === 'interview') return 'badge-purple';
+        if (r.category === 'submitted_or_review') return 'badge-green';
+        if (r.category === 'needs_letter' || r.category === 'needs_human') return 'badge-yellow';
+        return 'badge-blue';
+      }
+
+      function el(tag, props = {}, children = []) {
+        const node = document.createElement(tag);
+        for (const [k, v] of Object.entries(props)) {
+          if (v === undefined || v === null) continue;
+          if (k === 'className') node.className = v;
+          else if (k === 'textContent') node.textContent = v;
+          else if (k === 'hidden') node.hidden = Boolean(v);
+          else node.setAttribute(k, String(v));
+        }
+        for (const child of children) {
+          if (child === null || child === undefined) continue;
+          node.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
+        }
+        return node;
+      }
+
+      function buildCompanyCard(r, mode = 'all') {
+        const card = el('article', { className: 'card' });
+
+        const head = el('div', { className: 'card-head' }, [
+          el('h4', { className: 'card-title', textContent: r.company }),
+          el('span', { className: 'row-tag', textContent: `صف ${r.row}` })
+        ]);
+        card.appendChild(head);
+
+        const badgeRow = el('div', { style: 'display:flex; flex-wrap:wrap; gap:0.35rem; align-items:center;' }, [
+          el('span', { className: `badge ${badgeClassForRow(r)}`, textContent: r.status || 'غير محدد' })
+        ]);
+        if (r.queuedActions && r.queuedActions.length > 0) {
+          badgeRow.appendChild(el('span', { className: 'badge badge-yellow', textContent: '⏳ قيد المزامنة' }));
+        }
+        if (r.has_letter && r.category === 'needs_letter') {
+          badgeRow.appendChild(el('span', { className: 'badge badge-green', textContent: `📄 الخطاب مرفوع (${r.expected_letter})` }));
+        }
+        card.appendChild(badgeRow);
+
+        if (r.role && r.role !== '-') {
+          card.appendChild(el('div', { className: 'meta-line', textContent: `المسار: ${r.role}${r.date && r.date !== '-' ? ` • ${r.date}` : ''}` }));
+        }
+        if (r.credentials && r.credentials !== '-') {
+          card.appendChild(el('div', { className: 'meta-line', textContent: `بيانات الحساب: ${r.credentials}` }));
+        }
+        if (r.notes && r.notes !== '-') {
+          const det = el('details', {}, [
+            el('summary', { className: 'meta-line', style: 'cursor:pointer;font-weight:700;', textContent: 'عرض الملاحظات وسجل التحديثات' }),
+            el('div', { className: 'notes-box', style: 'margin-block-start:0.4rem;', textContent: r.notes })
+          ]);
+          if (mode === 'interview') det.open = true;
+          card.appendChild(det);
+        }
+
+        const btns = el('div', { className: 'btn-row' });
+        const safeUrl = sanitizeSafeUrl(r.url);
+        if (safeUrl) {
+          btns.appendChild(el('a', {
+            className: 'btn btn-primary',
+            href: safeUrl,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            textContent: safeUrl.startsWith('mailto:') ? '✉️ إرسال إيميل' : '🌐 فتح الرابط'
+          }));
+        }
+
+        if (mode === 'letter' || r.category === 'needs_letter') {
+          const copyNameBtn = el('button', { type: 'button', className: 'btn', textContent: '📋 نسخ اسم الجهة' });
+          copyNameBtn.addEventListener('click', () => copyText(r.company, 'اسم الجهة'));
+          btns.appendChild(copyNameBtn);
+
+          const uploadBtn = el('button', { type: 'button', className: 'btn btn-primary', textContent: '📎 رفع الخطاب PDF' });
+          uploadBtn.addEventListener('click', () => triggerCardLetterUpload(r));
+          btns.appendChild(uploadBtn);
+
+          const allowGeneralBtn = el('button', { type: 'button', className: 'btn', textContent: '✅ اسمح بخطاب لمن يهمه الأمر' });
+          allowGeneralBtn.addEventListener('click', async () => {
+            allowGeneralBtn.disabled = true;
+            try {
+              await enqueueMobileAction({ action: 'approve_general_letter', row: r.row, company: r.company });
+              showToast(`✅ تمت الموافقة على استخدام خطاب لمن يهمه الأمر لـ ${r.company}`);
+            } catch (err) {
+              showToast(`❌ خطأ: ${err.message}`);
+            } finally {
+              allowGeneralBtn.disabled = false;
+            }
+          });
+          btns.appendChild(allowGeneralBtn);
+        }
+
+        if (mode === 'human' || r.category === 'needs_human') {
+          const copyPwdBtn = el('button', { type: 'button', className: 'btn', textContent: '🔑 نسخ الباسورد' });
+          copyPwdBtn.addEventListener('click', () => copyText(UNIFIED_PASS, 'كلمة المرور الموحدة'));
+          btns.appendChild(copyPwdBtn);
+
+          const doneBtn = el('button', { type: 'button', className: 'btn btn-success', textContent: '✅ أنهيت التقديم من الجوال' });
+          doneBtn.addEventListener('click', async () => {
+            doneBtn.disabled = true;
+            try {
+              await enqueueMobileAction({ action: 'mark_submitted', row: r.row, company: r.company });
+              showToast(`✅ تم تسجيل ${r.company} كمقدم بنجاح`);
+            } catch (err) {
+              showToast(`❌ خطأ: ${err.message}`);
+            } finally {
+              doneBtn.disabled = false;
+            }
+          });
+          btns.appendChild(doneBtn);
+        }
+
+        if (mode === 'all') {
+          if (r.credentials && r.credentials !== '-') {
+            const credBtn = el('button', { type: 'button', className: 'btn', textContent: '🔑 نسخ بيانات الحساب' });
+            credBtn.addEventListener('click', () => copyText(`${r.email || 'mr0abdulwahab@gmail.com'} | ${r.credentials}`, 'بيانات الحساب'));
+            btns.appendChild(credBtn);
+          }
+          if (r.category !== 'needs_letter') {
+            const attachBtn = el('button', { type: 'button', className: 'btn', textContent: '📎 إرفاق خطاب' });
+            attachBtn.addEventListener('click', () => triggerCardLetterUpload(r));
+            btns.appendChild(attachBtn);
+          }
+        }
+
+        if (typeof r.row === 'number') {
+          const isExcluded = r.excluded === 'نعم' || (r.status || '').includes('مستبعد');
+          const exclBtn = el('button', {
+            type: 'button',
+            className: isExcluded ? 'btn' : 'btn btn-danger',
+            textContent: isExcluded ? '↩️ إلغاء الاستبعاد' : '🚫 استبعاد'
+          });
+          exclBtn.addEventListener('click', async () => {
+            exclBtn.disabled = true;
+            try {
+              await enqueueMobileAction({
+                action: isExcluded ? 'unexclude_company' : 'exclude_company',
+                row: r.row,
+                company: r.company
+              });
+              showToast(isExcluded ? `↩️ تم إلغاء استبعاد ${r.company}` : `🚫 تم استبعاد ${r.company}`);
+            } catch (err) {
+              showToast(`❌ خطأ: ${err.message}`);
+            } finally {
+              exclBtn.disabled = false;
+            }
+          });
+          btns.appendChild(exclBtn);
+        }
+
+        card.appendChild(btns);
+        return card;
+      }
+
+      function triggerCardLetterUpload(rowObj) {
+        appState.pendingCardUploadRow = rowObj;
+        const input = document.getElementById('shared-card-file-input');
+        input.value = '';
+        input.click();
+      }
+
+      document.getElementById('shared-card-file-input').addEventListener('change', async (e) => {
+        const file = e.target.files?.[0];
+        const targetRow = appState.pendingCardUploadRow;
+        if (!file || !targetRow) return;
+        try {
+          showToast('⏳ جاري تحويل الاسم ورفع الخطاب...');
+          const resolved = resolveLetterFilenameJS(targetRow.company, appState.effectiveRows);
+          const cleanName = targetRow.expected_letter || resolved.filename;
+          const b64 = await readFileAsBase64(file);
+          const remotePath = `letters/${cleanName}`;
+          await ghPutContent(remotePath, b64, `Upload letter for ${targetRow.company} (${cleanName})`);
+          await enqueueMobileAction({
+            action: 'upload_letter',
+            row: targetRow.row,
+            company: targetRow.company,
+            original_name: file.name,
+            target_filename: cleanName,
+            remote_path: remotePath
+          });
+          showToast(`✅ تم رفع الخطاب وحفظه باسم ${cleanName}`);
+        } catch (err) {
+          showToast(`❌ فشل رفع الخطاب: ${err.message}`, 5000);
+        }
+      });
+
+      function renderQueueBanner() {
+        const banner = document.getElementById('queue-banner');
+        const list = document.getElementById('queue-list');
+        const summary = document.getElementById('queue-summary-text');
+        if (!appState.queue.length) {
+          banner.hidden = true;
+          list.replaceChildren();
+          return;
+        }
+        banner.hidden = false;
+        summary.textContent = `⏳ إجراءات قيد الانتظار لمزامنة اللابتوب (${appState.queue.length})`;
+
+        const actionNames = {
+          upload_letter: '📎 رفع خطاب',
+          exclude_company: '🚫 استبعاد',
+          unexclude_company: '↩️ إلغاء استبعاد',
+          mark_submitted: '✅ تم التقديم يدوياً',
+          approve_general_letter: '✅ سماح بخطاب لمن يهمه الأمر',
+          add_company: '➕ إضافة شركة'
+        };
+
+        const nodes = appState.queue.map((q) => {
+          const cancelBtn = el('button', { type: 'button', className: 'btn', style: 'min-block-size:36px;padding:0.25rem 0.6rem;', textContent: 'إلغاء' });
+          cancelBtn.addEventListener('click', () => removeQueueItem(q.id));
+          return el('li', { className: 'queue-item' }, [
+            el('span', { textContent: `${actionNames[q.action] || q.action}: ${q.company || q.target_filename || q.url}` }),
+            cancelBtn
+          ]);
+        });
+        list.replaceChildren(...nodes);
+      }
+
+      function renderStats() {
+        const rows = appState.effectiveRows;
+        const total = rows.length;
+        const submitted = rows.filter((r) => r.category === 'submitted_or_review').length;
+        const interviews = rows.filter((r) => r.category === 'interview').length;
+        const actions = rows.filter((r) => r.category === 'needs_letter' || r.category === 'needs_human').length;
+        const excluded = rows.filter((r) => r.category === 'excluded_or_rejected').length;
+
+        document.getElementById('stat-total').textContent = String(total);
+        document.getElementById('stat-submitted').textContent = String(submitted);
+        document.getElementById('stat-interview').textContent = String(interviews);
+        document.getElementById('stat-action').textContent = String(actions);
+        document.getElementById('stat-excluded').textContent = String(excluded);
+      }
+
+      function renderActionCenter() {
+        const rows = appState.effectiveRows;
+        const interviews = rows.filter((r) => r.category === 'interview');
+        const letters = rows.filter((r) => r.category === 'needs_letter');
+        const human = rows.filter((r) => r.category === 'needs_human');
+
+        document.getElementById('count-interviews').textContent = String(interviews.length);
+        document.getElementById('count-letters').textContent = String(letters.length);
+        document.getElementById('count-human').textContent = String(human.length);
+
+        const renderBucket = (containerId, list, mode, emptyMsg) => {
+          const box = document.getElementById(containerId);
+          if (!list.length) {
+            box.replaceChildren(el('div', { className: 'empty-state', textContent: emptyMsg }));
+            return;
+          }
+          box.replaceChildren(...list.map((r) => buildCompanyCard(r, mode)));
+        };
+
+        renderBucket('list-interviews', interviews, 'interview', 'لا توجد دعوات مقابلات أو تقييمات معلقة حالياً.');
+        renderBucket('list-letters', letters, 'letter', 'لا توجد شركات بانتظار خطاب الجامعة.');
+        renderBucket('list-human', human, 'human', 'لا توجد تقديمات متوقفة على كابتشا أو نفاذ.');
+      }
+
+      function renderCompaniesTab() {
+        const q = normalizeText(appState.searchQuery);
+        const f = appState.activeFilter;
+        const filtered = appState.effectiveRows.filter((r) => {
+          if (f !== 'all' && r.category !== f) return false;
+          if (!q) return true;
+          const hay = normalizeText(`${r.company} ${r.url} ${r.role} ${r.status} ${r.notes}`);
+          return hay.includes(q);
+        });
+        document.getElementById('count-companies-shown').textContent = String(filtered.length);
+        const box = document.getElementById('list-companies');
+        if (!filtered.length) {
+          box.replaceChildren(el('div', { className: 'empty-state', textContent: 'لا توجد شركات مطابقة للبحث.' }));
+          return;
+        }
+        box.replaceChildren(...filtered.map((r) => buildCompanyCard(r, 'all')));
+      }
+
+      function renderInboxTab() {
+        const emails = appState.rawState?.emails || [];
+        document.getElementById('count-emails').textContent = String(emails.length);
+        const box = document.getElementById('list-emails');
+        if (!emails.length) {
+          box.replaceChildren(el('div', { className: 'empty-state', textContent: 'لا توجد رسائل مسجلة في آخر فحص.' }));
+          return;
+        }
+        const cards = emails.map((em) => {
+          const card = el('article', { className: 'card' });
+          const subj = String(em.subject || '(بدون عنوان)');
+          const isAlert = subj.includes('Spam') || /interview|hirevue|assessment|مقابلة|تقييم|دعوة/i.test(`${subj} ${em.snippet || ''}`);
+          card.appendChild(el('span', { className: `badge ${isAlert ? 'badge-purple' : 'badge-blue'}`, textContent: isAlert ? '🔴 أولوية / تقييم' : '📩 رسالة توظيف' }));
+          card.appendChild(el('h4', { className: 'card-title', textContent: subj }));
+          card.appendChild(el('div', { className: 'meta-line', textContent: `من: ${em.from || '-'} • ${em.date || ''}` }));
+          if (em.snippet) {
+            card.appendChild(el('div', { className: 'notes-box', textContent: String(em.snippet).slice(0, 650) }));
+          }
+          const links = (em.links || []).map(sanitizeSafeUrl).filter(Boolean).slice(0, 4);
+          if (links.length) {
+            const btnRow = el('div', { className: 'btn-row' });
+            links.forEach((lnk, i) => {
+              btnRow.appendChild(el('a', {
+                className: 'btn',
+                href: lnk,
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                textContent: `🔗 رابط ${i + 1}`
+              }));
+            });
+            card.appendChild(btnRow);
+          }
+          return card;
+        });
+        box.replaceChildren(...cards);
+      }
+
+      function renderVaultTab() {
+        const docs = appState.rawState?.docs || [];
+        const box = document.getElementById('list-docs');
+        if (!docs.length) {
+          box.replaceChildren(el('div', { className: 'empty-state', textContent: 'لم تُرفع المستندات بعد — شغّل sync-mobile على اللابتوب.' }));
+          return;
+        }
+        const cards = docs.map((d) => {
+          const card = el('article', { className: 'card' });
+          card.appendChild(el('div', { className: 'card-head' }, [
+            el('h4', { className: 'card-title', textContent: d.name }),
+            el('span', { className: 'row-tag', textContent: `${d.size_kb} KB` })
+          ]));
+          const dlBtn = el('button', { type: 'button', className: 'btn btn-primary', textContent: '⬇️ تحميل الملف على الجوال' });
+          dlBtn.addEventListener('click', async () => {
+            dlBtn.disabled = true;
+            try {
+              showToast(`⏳ جاري تحميل ${d.name}...`);
+              const data = await ghFetch(`contents/${d.path}`);
+              let b64 = data.content;
+              if (!b64 && data.sha) {
+                const blob = await ghFetch(`git/blobs/${data.sha}`);
+                b64 = blob.content;
+              }
+              const bytes = decodeBase64ToBytes(b64);
+              const mime = d.name.toLowerCase().endsWith('.jpg') ? 'image/jpeg' : 'application/pdf';
+              const blobUrl = URL.createObjectURL(new Blob([bytes], { type: mime }));
+              const a = document.createElement('a');
+              a.href = blobUrl;
+              a.download = d.name;
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+              setTimeout(() => URL.revokeObjectURL(blobUrl), 15000);
+              showToast(`✅ تم تنزيل ${d.name}`);
+            } catch (err) {
+              showToast(`❌ تعذر تحميل الملف: ${err.message}`, 5000);
+            } finally {
+              dlBtn.disabled = false;
+            }
+          });
+          card.appendChild(el('div', { className: 'btn-row' }, [dlBtn]));
+          return card;
+        });
+        box.replaceChildren(...cards);
+      }
+
+      function populateSmartLetterDropdown() {
+        const sel = document.getElementById('smart-letter-row');
+        const current = sel.value;
+        const opts = [el('option', { value: '', textContent: '-- تعرف تلقائي من اسم الملف --' })];
+        for (const r of appState.effectiveRows) {
+          if (typeof r.row !== 'number') continue;
+          const prefix = r.category === 'needs_letter' ? '📄 ' : '';
+          opts.push(el('option', { value: String(r.row), textContent: `${prefix}صف ${r.row}: ${r.company}` }));
+        }
+        sel.replaceChildren(...opts);
+        if (current) sel.value = current;
+      }
+
+      function renderAll() {
+        const updatedAt = appState.rawState?.updated_at ? new Date(appState.rawState.updated_at).toLocaleString('ar-SA') : 'غير متاح';
+        document.getElementById('sync-meta').textContent = `آخر مزامنة للابتوب: ${updatedAt}`;
+        renderQueueBanner();
+        renderStats();
+        renderActionCenter();
+        renderCompaniesTab();
+        renderInboxTab();
+        renderVaultTab();
+        populateSmartLetterDropdown();
+      }
+
+      function switchTab(tabName) {
+        appState.activeTab = tabName;
+        for (const panel of document.querySelectorAll('.view-panel')) {
+          panel.hidden = panel.id !== `view-${tabName}`;
+        }
+        for (const btn of document.querySelectorAll('.nav-btn')) {
+          if (btn.dataset.tab === tabName) btn.setAttribute('aria-current', 'page');
+          else btn.removeAttribute('aria-current');
+        }
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+
+      document.querySelectorAll('.nav-btn').forEach((btn) => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+      });
+
+      document.querySelectorAll('#company-filters .pill-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          appState.activeFilter = btn.dataset.filter;
+          document.querySelectorAll('#company-filters .pill-btn').forEach((b) => {
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+          renderCompaniesTab();
+        });
+      });
+
+      document.getElementById('company-search').addEventListener('input', (e) => {
+        appState.searchQuery = e.target.value;
+        renderCompaniesTab();
+      });
+
+      // Live Duplicate Checker in Tab 2
+      function checkDuplicateLive() {
+        const nameVal = document.getElementById('add-company-name').value.trim();
+        const urlVal = document.getElementById('add-company-url').value.trim();
+        const box = document.getElementById('dup-check-result');
+        if (!nameVal && !urlVal) {
+          box.hidden = true;
+          return;
+        }
+        const normName = normalizeText(nameVal);
+        const domain = extractDomain(urlVal);
+        const stop = new Set(['riyadh', 'saudi', 'arabia', 'company', 'group', 'bank', 'شركه', 'مجموعه', 'بنك', 'الرياض', 'السعوديه']);
+        const tokens = normName.split(/[\s()\-/,]+/).filter((t) => t.length >= 3 && !stop.has(t));
+
+        const matches = appState.effectiveRows.filter((r) => {
+          const rComp = normalizeText(r.company);
+          const rUrl = (r.url || '').toLowerCase();
+          if (urlVal && rUrl && rUrl === urlVal.toLowerCase()) return true;
+          if (domain && !['linkedin.com', 'forms.cloud.microsoft', 'go.3atabah.com', 'darbak.space', 'apply.workable.com'].includes(domain) && rUrl.includes(domain)) return true;
+          if (normName && normName.length >= 3 && rComp.includes(normName)) return true;
+          if (tokens.length && tokens.some((t) => rComp.includes(t))) return true;
+          return false;
+        });
+
+        box.hidden = false;
+        if (!matches.length) {
+          box.className = 'dup-box badge-green';
+          box.textContent = '🟢 شركة جديدة غير مسجلة في التراكر — جاهزة للإضافة.';
+          return;
+        }
+        const first = matches[0];
+        const locked = first.excluded === 'نعم' || ['submitted_or_review', 'interview', 'excluded_or_rejected'].includes(first.category);
+        if (locked) {
+          box.className = 'dup-box badge-red';
+          box.textContent = `⛔ موجودة ومقدم عليها أو مستبعدة (صف ${first.row}: ${first.company} — ${first.status})`;
+        } else {
+          box.className = 'dup-box badge-yellow';
+          box.textContent = `⚠️ موجودة كمعلقة في التراكر (صف ${first.row}: ${first.company} — ${first.status})`;
+        }
+      }
+
+      document.getElementById('add-company-name').addEventListener('input', checkDuplicateLive);
+      document.getElementById('add-company-url').addEventListener('input', checkDuplicateLive);
+
+      // Submit Quick Add Company
+      document.getElementById('add-company-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('add-submit-btn');
+        const company = document.getElementById('add-company-name').value.trim();
+        const url = document.getElementById('add-company-url').value.trim();
+        const role = document.getElementById('add-company-role').value;
+        const notes = document.getElementById('add-company-notes').value.trim();
+        const priority = document.getElementById('add-company-priority').checked;
+        const file = document.getElementById('add-company-letter').files?.[0] || null;
+
+        if (!company) return;
+        btn.disabled = true;
+        try {
+          let remotePath = '';
+          let targetFilename = '';
+          if (file) {
+            showToast('⏳ جاري رفع الخطاب المرفق...');
+            const resolved = resolveLetterFilenameJS(company || file.name, appState.effectiveRows);
+            targetFilename = resolved.filename;
+            remotePath = `letters/${targetFilename}`;
+            const b64 = await readFileAsBase64(file);
+            await ghPutContent(remotePath, b64, `Upload letter for new company ${company}`);
+          }
+          await enqueueMobileAction({
+            action: 'add_company',
+            company,
+            url,
+            role,
+            notes,
+            priority,
+            remote_path: remotePath,
+            target_filename: targetFilename
+          });
+          e.target.reset();
+          document.getElementById('add-company-priority').checked = true;
+          document.getElementById('dup-check-result').hidden = true;
+          showToast(`✅ تمت إضافة ${company} لطابور التقديم القادم`);
+        } catch (err) {
+          showToast(`❌ تعذر الإضافة: ${err.message}`, 5000);
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      // Smart Letter File Preview & Upload
+      document.getElementById('smart-letter-file').addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        const preview = document.getElementById('smart-letter-preview');
+        if (!file) {
+          preview.hidden = true;
+          return;
+        }
+        const resolved = resolveLetterFilenameJS(file.name, appState.effectiveRows);
+        preview.hidden = false;
+        if (resolved.matchedRow) {
+          preview.className = 'dup-box badge-green';
+          preview.textContent = `✅ تم التعرف تلقائياً: ${resolved.matchedRow.company} (صف ${resolved.matchedRow.row}) ⟵ سيُحفظ باسم ${resolved.filename}`;
+          document.getElementById('smart-letter-row').value = String(resolved.matchedRow.row);
+        } else {
+          preview.className = 'dup-box badge-blue';
+          preview.textContent = `📄 سيُحفظ الملف بالاسم الإنجليزي النظيف: ${resolved.filename}`;
+        }
+      });
+
+      document.getElementById('smart-letter-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const file = document.getElementById('smart-letter-file').files?.[0];
+        if (!file) return;
+        const btn = document.getElementById('smart-letter-submit');
+        const manualRowVal = document.getElementById('smart-letter-row').value;
+        btn.disabled = true;
+        try {
+          let targetRow = null;
+          let targetFilename = '';
+          if (manualRowVal) {
+            targetRow = appState.effectiveRows.find((r) => String(r.row) === manualRowVal) || null;
+          }
+          const resolved = resolveLetterFilenameJS(targetRow ? targetRow.company : file.name, appState.effectiveRows);
+          targetRow = targetRow || resolved.matchedRow;
+          targetFilename = targetRow?.expected_letter || resolved.filename;
+          const remotePath = `letters/${targetFilename}`;
+          showToast(`⏳ جاري رفع الخطاب باسم ${targetFilename}...`);
+          const b64 = await readFileAsBase64(file);
+          await ghPutContent(remotePath, b64, `Smart upload letter ${targetFilename}`);
+          await enqueueMobileAction({
+            action: 'upload_letter',
+            row: targetRow ? targetRow.row : null,
+            company: targetRow ? targetRow.company : file.name,
+            original_name: file.name,
+            target_filename: targetFilename,
+            remote_path: remotePath
+          });
+          e.target.reset();
+          document.getElementById('smart-letter-preview').hidden = true;
+          showToast(`✅ تم رفع الخطاب وحفظه باسم ${targetFilename}`);
+        } catch (err) {
+          showToast(`❌ فشل الرفع: ${err.message}`, 5000);
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      // Auth Dialog & Loading Data
+      const authDialog = document.getElementById('auth-dialog');
+      document.getElementById('settings-btn').addEventListener('click', () => {
+        document.getElementById('token-input').value = appState.token || '';
+        authDialog.showModal();
+      });
+
+      document.getElementById('auth-clear-btn').addEventListener('click', () => {
+        localStorage.removeItem(TOKEN_KEY);
+        appState.token = '';
+        document.getElementById('token-input').value = '';
+        showToast('🗑️ تم مسح التوكن من هذا المتصفح');
+      });
+
+      document.getElementById('auth-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const val = document.getElementById('token-input').value.trim();
+        if (!val) return;
+        localStorage.setItem(TOKEN_KEY, val);
+        appState.token = val;
+        authDialog.close();
+        await loadAllData();
+      });
+
+      document.getElementById('refresh-btn').addEventListener('click', loadAllData);
+
+      async function loadAllData() {
+        document.getElementById('sync-meta').textContent = 'جاري تحديث البيانات...';
+        try {
+          const [stateRes, queueRes] = await Promise.all([
+            ghGetJson('tracker_state.json'),
+            ghGetJson('mobile_queue.json')
+          ]);
+          appState.rawState = stateRes.value || { rows: [], emails: [], docs: [] };
+          appState.queue = Array.isArray(queueRes.value) ? queueRes.value : [];
+          appState.queueSha = queueRes.sha || null;
+          recomputeEffectiveRows();
+          renderAll();
+        } catch (err) {
+          document.getElementById('sync-meta').textContent = 'غير متصل';
+          if (err.message === 'AUTH_REQUIRED' || err.message === 'AUTH_INVALID') {
+            showToast('🔐 يلزم إدخال أو تحديث التوكن للاتصال بالمستودع الخاص');
+            authDialog.showModal();
+          } else {
+            showToast(`⚠️ تعذر تحميل البيانات: ${err.message}`, 5000);
+          }
+        }
+      }
+
+      function initAuthAndBoot() {
+        if (location.hash) {
+          const hashParams = new URLSearchParams(location.hash.slice(1));
+          const urlToken = hashParams.get('token');
+          if (urlToken) {
+            localStorage.setItem(TOKEN_KEY, urlToken.trim());
+            history.replaceState(null, '', location.pathname + location.search);
+          }
+        }
+        appState.token = localStorage.getItem(TOKEN_KEY) || '';
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        }
+        if (!appState.token) {
+          authDialog.showModal();
+        } else {
+          loadAllData();
+        }
+      }
+
+      initAuthAndBoot();
+    })();
+  </script>
+</body>
+</html>
