@@ -310,6 +310,26 @@
     .badge-purple { background: var(--purple-bg); color: var(--purple-text); }
     .badge-red { background: var(--red-bg); color: var(--red-text); }
 
+    .role-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.7rem;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      background: var(--primary-soft);
+      color: var(--blue-text);
+      border-inline-start: 4px solid var(--primary);
+      word-break: break-word;
+    }
+
+    .role-banner-coding {
+      background: var(--yellow-bg);
+      color: var(--yellow-text);
+      border-inline-start-color: #d97706;
+    }
+
     .meta-line {
       font-size: 0.84rem;
       color: var(--muted);
@@ -1154,6 +1174,13 @@
         appState.effectiveRows = baseRows;
       }
 
+      function classifyRoleType(roleText) {
+        const txt = String(roleText || '');
+        const isCoding = /\b(software\s+engineer|agent\s+engineer|databricks\s+engineer|data\s+engineer|data\s+science|applied\s+ai|data\s+and\s+ai|web\s*&\s*database\s*development)\b/i.test(txt)
+          || /هندسة برمجيات|تطوير مواقع/.test(txt);
+        return isCoding ? 'coding' : 'standard';
+      }
+
       function badgeClassForRow(r) {
         if (r.category === 'excluded_or_rejected') return 'badge-red';
         if (r.category === 'interview') return 'badge-purple';
@@ -1187,6 +1214,15 @@
         ]);
         card.appendChild(head);
 
+        if (r.role && r.role !== '-') {
+          const roleKind = classifyRoleType(r.role);
+          const rolePrefix = roleKind === 'coding' ? '💻 منصب برمجي/كود:' : '🎯 المنصب:';
+          card.appendChild(el('div', {
+            className: roleKind === 'coding' ? 'role-banner role-banner-coding' : 'role-banner',
+            textContent: `${rolePrefix} ${r.role}`
+          }));
+        }
+
         const badgeRow = el('div', { style: 'display:flex; flex-wrap:wrap; gap:0.35rem; align-items:center;' }, [
           el('span', { className: `badge ${badgeClassForRow(r)}`, textContent: r.status || 'غير محدد' })
         ]);
@@ -1198,8 +1234,8 @@
         }
         card.appendChild(badgeRow);
 
-        if (r.role && r.role !== '-') {
-          card.appendChild(el('div', { className: 'meta-line', textContent: `المسار: ${r.role}${r.date && r.date !== '-' ? ` • ${r.date}` : ''}` }));
+        if (r.date && r.date !== '-') {
+          card.appendChild(el('div', { className: 'meta-line', textContent: `تاريخ التقديم / الفحص: ${r.date}` }));
         }
         if (r.credentials && r.credentials !== '-') {
           card.appendChild(el('div', { className: 'meta-line', textContent: `بيانات الحساب: ${r.credentials}` }));
