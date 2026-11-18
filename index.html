@@ -1769,9 +1769,28 @@
         showToast('🗑️ تم مسح التوكن من هذا المتصفح');
       });
 
+      function extractTokenInput(rawInput) {
+        let val = String(rawInput || '').trim();
+        if (!val) return '';
+        if (val.includes('#token=')) {
+          const hashPart = val.slice(val.indexOf('#') + 1);
+          const extracted = new URLSearchParams(hashPart).get('token');
+          if (extracted) return extracted.trim();
+        }
+        if (val.includes('?token=')) {
+          try {
+            const extracted = new URL(val).searchParams.get('token');
+            if (extracted) return extracted.trim();
+          } catch {
+            // fallback to raw value
+          }
+        }
+        return val;
+      }
+
       document.getElementById('auth-form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const val = document.getElementById('token-input').value.trim();
+        const val = extractTokenInput(document.getElementById('token-input').value);
         if (!val) return;
         localStorage.setItem(TOKEN_KEY, val);
         appState.token = val;
