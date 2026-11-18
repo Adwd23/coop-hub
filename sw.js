@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coop-hub-v2';
+const CACHE_NAME = 'coop-hub-v3';
 const ASSETS = ['./', './index.html', './manifest.json', './icon.svg'];
 
 self.addEventListener('install', (event) => {
