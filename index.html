@@ -1181,6 +1181,41 @@
         return isCoding ? 'coding' : 'standard';
       }
 
+      function extractInterviewAndPortalUrls(r) {
+        const notesText = String(r.notes || '');
+        const credsText = String(r.credentials || '');
+        let interviewUrl = null;
+        let candidateUrl = null;
+
+        // 1. Prefer explicit labeled interview/assessment URLs in notes
+        const labeledMatch = notesText.match(/(?:رابط\s*(?:التقييم|المقابلة)(?:\s*المباشر)?\s*:\s*)(https?:\/\/[^\s)<>]+)/i);
+        if (labeledMatch) {
+          interviewUrl = sanitizeSafeUrl(labeledMatch[1].replace(/[.,;)]+$/, ''));
+        }
+        // 2. Fallback: look for known assessment/interview platform URLs in notes
+        if (!interviewUrl) {
+          const urlsInNotes = notesText.match(/https?:\/\/[^\s)<>]+/gi) || [];
+          for (const raw of urlsInNotes) {
+            const clean = raw.replace(/[.,;)]+$/, '');
+            if (/(assessments\.workable\.com|hirevue\.com|testgorilla|velents|willo)/i.test(clean)) {
+              interviewUrl = sanitizeSafeUrl(clean);
+              if (interviewUrl) break;
+            }
+          }
+        }
+        // 3. Candidate portal URL in credentials (e.g. atheer-act.workable.com/jobs/.../candidates/...)
+        const credUrlMatch = credsText.match(/((?:https?:\/\/)?[a-z0-9.-]+\.[a-z]{2,}\/[^\s|]+)/i);
+        if (credUrlMatch) {
+          const rawCred = credUrlMatch[1].replace(/[.,;)]+$/, '');
+          const withProto = /^https?:\/\//i.test(rawCred) ? rawCred : `https://${rawCred}`;
+          const validated = sanitizeSafeUrl(withProto);
+          if (validated && validated !== interviewUrl) {
+            candidateUrl = validated;
+          }
+        }
+        return { interviewUrl, candidateUrl };
+      }
+
       function badgeClassForRow(r) {
         if (r.category === 'excluded_or_rejected') return 'badge-red';
         if (r.category === 'interview') return 'badge-purple';
@@ -1250,14 +1285,34 @@
         }
 
         const btns = el('div', { className: 'btn-row' });
+        const { interviewUrl, candidateUrl } = extractInterviewAndPortalUrls(r);
         const safeUrl = sanitizeSafeUrl(r.url);
-        if (safeUrl) {
+
+        if (interviewUrl) {
           btns.appendChild(el('a', {
             className: 'btn btn-primary',
+            href: interviewUrl,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            textContent: '🎯 فتح رابط المقابلة / التقييم'
+          }));
+        }
+        if (candidateUrl) {
+          btns.appendChild(el('a', {
+            className: 'btn',
+            href: candidateUrl,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            textContent: '👤 ملف المرشح'
+          }));
+        }
+        if (safeUrl) {
+          btns.appendChild(el('a', {
+            className: interviewUrl ? 'btn' : 'btn btn-primary',
             href: safeUrl,
             target: '_blank',
             rel: 'noopener noreferrer',
-            textContent: safeUrl.startsWith('mailto:') ? '✉️ إرسال إيميل' : '🌐 فتح الرابط'
+            textContent: safeUrl.startsWith('mailto:') ? '✉️ إرسال إيميل' : (interviewUrl ? '🌐 رابط الإعلان الأصلي' : '🌐 فتح الرابط')
           }));
         }
 
